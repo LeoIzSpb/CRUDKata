@@ -15,19 +15,19 @@
         <th th:width="120">Name</th>
         <th th:width="120">Lastname</th>
         <th th:width="50">Age</th>
+        <th th:width="50">Edit</th>
+        <th th:width="50">Delete</th>
     </tr>
     <tr th:each="user : ${users}">
-        <th> <a th:href="@{/{id}(id=${user.id})}" th:utext="${user.id}">UserId</a> </th>
+        <th> <a th:href="@{/show(id=${user.id})}" th:utext="${user.id}">UserId</a> </th>
         <td th:utext="${user.name}">Name</td>
         <td th:utext="${user.lastname}">Lastname</td>
         <td th:utext="${user.age}">Age</td>
+        <th>
+            <a th:href="@{/edit(id=${user.id})}" th:utext="Edit">Edit</a>
+        </th>
         <td>
-            <form th:action="@{'edit/' + ${user.id}}">
-                <input type="submit" class="buttonEdit" value="Edit"/>
-            </form>
-        </td>
-        <td>
-            <form th:method="DELETE" th:action="@{'delete/' + ${user.getId()}}">
+            <form th:method="POST" th:action="@{/delete(id =  ${user.getId()})}">
                 <input type="submit" class="buttonDelete" value="Delete"/>
             </form>
         </td>
